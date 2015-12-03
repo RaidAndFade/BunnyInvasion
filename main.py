@@ -17,19 +17,19 @@ def drawBunny(x,y,dir):
         pygame.draw.line(screen, (255, 255, 255), [30 + x, 40 + y], [30 + x, 60 + y], 3) #leg 3
         pygame.draw.line(screen, (255, 255, 255), [39 + x, 35 + y], [39 + x, 60 + y], 3) #leg 4
         pygame.draw.ellipse(screen, (255, 255, 255), (42 + x, 25 + y, 30, 20)) #head
-        pygame.draw.circle(screen, (0, 0, 0), (64 + x, 32 + y), 2) #eye will remembr jews
+        pygame.draw.circle(screen, (0, 0, 0), (64 + x, 32 + y), 2) #eye will remembr yuuuu
         pygame.draw.ellipse(screen, (255, 255, 255), (50 + x, 10 + y, 12, 20)) #faec
         pygame.draw.line(screen, (0, 0, 0), [60 + x, 40 + y], [69 + x, 40 + y], 1) #mout
     elif dir == 1:
-        pygame.draw.ellipse(screen, (255, 255, 255), (x, 20 + y, 50, 30))
-        pygame.draw.line(screen, (255, 255, 255), [6 + x, 35 + y], [6 + x, 60 + y], 3)
-        pygame.draw.line(screen, (255, 255, 255), [15 + x, 40 + y], [15 + x, 60 + y], 3)
-        pygame.draw.line(screen, (255, 255, 255), [30 + x, 40 + y], [30 + x, 60 + y], 3)
-        pygame.draw.line(screen, (255, 255, 255), [39 + x, 35 + y], [39 + x, 60 + y], 3)
-        pygame.draw.ellipse(screen, (255, 255, 255), (42 + x, 25 + y, 30, 20))
-        pygame.draw.circle(screen, (0, 0, 0), (64 + x, 32 + y), 2)
-        pygame.draw.ellipse(screen, (255, 255, 255), (50 + x, 10 + y, 12, 20))
-        pygame.draw.line(screen, (0, 0, 0), [60 + x, 40 + y], [69 + x, 40 + y], 1)
+        pygame.draw.ellipse(screen, (255, 255, 255), (x+22, 20 + y, 50, 30))
+        pygame.draw.line(screen, (255, 255, 255), [6 + x+22, 35 + y], [6 + x+22, 60 + y], 3)
+        pygame.draw.line(screen, (255, 255, 255), [15 + x+22, 40 + y], [15 + x+22, 60 + y], 3)
+        pygame.draw.line(screen, (255, 255, 255), [30 + x+22, 40 + y], [30 + x+22, 60 + y], 3)
+        pygame.draw.line(screen, (255, 255, 255), [39 + x+22, 35 + y], [39 + x+22, 60 + y], 3)
+        pygame.draw.ellipse(screen, (255, 255, 255), (x, 25 + y, 30, 20))
+        pygame.draw.circle(screen, (0, 0, 0), (12 + x, 32 + y), 2)
+        pygame.draw.ellipse(screen, (255, 255, 255), (12 + x, 10 + y, 12, 20))
+        pygame.draw.line(screen, (0, 0, 0), [3+x, 40 + y], [12 + x, 40 + y], 1)
     #pygame.draw.rect(screen,(0,0,0),(x,y,69,60))
     return Rect(x,y,69,60)
 
@@ -81,10 +81,10 @@ while True :
     #game state
     if keysDown[276]: #Left
         bunnyPos[0] -= 7
-        facing = 0
+        facing = 1
     if keysDown[275]: #right
         bunnyPos[0] += 7
-        facing = 1
+        facing = 0
     if keysDown[32]: #jump
         if isOnGround:
             yAccel = 20
