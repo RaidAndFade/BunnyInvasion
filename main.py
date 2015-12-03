@@ -11,10 +11,10 @@ pygame.font.init()
 
 def drawBunny(x,y):
     pygame.draw.ellipse(screen, (255, 255, 255), (x, 20 + y, 50, 30))
-    pygame.draw.line(screen, (255, 255, 255), [3 + x, 35 + y], [3 + x, 55 + y], 3)
+    pygame.draw.line(screen, (255, 255, 255), [6 + x, 35 + y], [6 + x, 60 + y], 3)
     pygame.draw.line(screen, (255, 255, 255), [15 + x, 40 + y], [15 + x, 60 + y], 3)
-    pygame.draw.line(screen, (255, 255, 255), [27 + x, 40 + y], [27 + x, 60 + y], 3)
-    pygame.draw.line(screen, (255, 255, 255), [39 + x, 35 + y], [39 + x, 55 + y], 3)
+    pygame.draw.line(screen, (255, 255, 255), [30 + x, 40 + y], [30 + x, 60 + y], 3)
+    pygame.draw.line(screen, (255, 255, 255), [39 + x, 35 + y], [39 + x, 60 + y], 3)
     pygame.draw.ellipse(screen, (255, 255, 255), (42 + x, 25 + y, 30, 20))
     pygame.draw.circle(screen, (0, 0, 0), (64 + x, 32 + y), 2)
     pygame.draw.ellipse(screen, (255, 255, 255), (50 + x, 10 + y, 12, 20))
@@ -75,8 +75,6 @@ while True :
         if isOnGround:
             yAccel = 20
 
-    if isOnGround:
-        yAccel = 0
     if yAccel > 0:
         bunnyPos[1] -= yAccel
         yAccel -= 1
@@ -88,5 +86,8 @@ while True :
     bunny = drawBunny(bunnyPos[0],bunnyPos[1])
 
     isOnGround = checkCollision(bunny,curLevel)
+
+    if isOnGround:
+        yAccel = 0
 
     pygame.display.update()
