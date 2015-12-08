@@ -36,25 +36,38 @@ def drawBunny(x,y,dir):
 def drawLevel(x,level):
     if level == 0:
         pygame.draw.rect(screen,(0,255,0),(0,500,screen.get_width(),screen.get_height()-500))
+        pygame.draw.rect(screen,(255,0,0),(400,300,100,10)),
+        pygame.draw.rect(screen,(255,0,0),(200,150,100,10)),
+        pygame.draw.rect(screen,(255,0,0),(100,400,100,10)),
+        pygame.draw.rect(screen,(255,0,0),(600,200,100,10)),
 
 collisions = [
     [
-        Rect(0,500,screen.get_width(),screen.get_height()-500)
-    ]
+        Rect(0,500,screen.get_width(),screen.get_height()-500),
+        Rect(400,300,100,10),
+        Rect(200,150,100,10),
+        Rect(100,400,100,10),
+        Rect(600,200,100,10),
+    ] 
 ]
 
 def checkCollision(player,level):
+    global yAccel, bunnyPos;
     colliding = False;
+    # pygame.draw.rect(screen,(255,255,255),(bunnyPos[0],bunnyPos[1]-yAccel,player.w,yAccel))
     for collide in collisions[level]:
         print(collide,player)
         if not colliding:
-            colliding = collide.colliderect(player)
-            # pygame.draw.rect(screen,(0,0,0),collide);
-            if colliding and not player.y == collide.y-player.h:
-                bunnyPos[1] = collide.y-player.h+1
-                return colliding
-
-    return colliding
+            if yAccel>0:
+                if Rect(bunnyPos[0],bunnyPos[1]-yAccel,player.w,yAccel).colliderect(collide):
+                    yAccel = 0
+                    return False
+            else:
+                if Rect(bunnyPos[0],bunnyPos[1],player.w,yAccel if yAccel > player.h else player.h).colliderect(collide):
+                    yAccel = 0
+                    bunnyPos[1] = collide.y-player.h+1
+                    return True
+    return False
 
 curLevel = 0
 bunnyPos = [0,0]
@@ -96,12 +109,21 @@ while True :
         bunnyPos[1] -= yAccel
         yAccel -= 1
 
+    # Level(curLevel)
+
+
+
     drawLevel(0,curLevel)
     bunny = drawBunny(bunnyPos[0],bunnyPos[1],facing)
 
     isOnGround = checkCollision(bunny,curLevel)
 
-    if isOnGround:
-        yAccel = 0
+    # collidingWith =  checkCollision(bunny,curLevel)
+    # isOnGround = not collidingWith == False
+    #
+    # print(isOnGround)
+    #
+    # if isOnGround:
+    #     yAccel = 0
 
     pygame.display.update()
