@@ -1,4 +1,4 @@
-__author__ = 'Sepehr'
+__author__ = 'SomeGuy'
 import pygame
 import sys
 from pygame.locals import *
